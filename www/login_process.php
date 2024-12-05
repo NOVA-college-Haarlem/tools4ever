@@ -22,15 +22,27 @@ if(empty($_POST['password'])){
     exit;
 }
 
-$email = $_POST['email'];
 
-$sql = "SELECT * FROM users WHERE email = '$email'";
+$email = $_POST['email'];
+$password = $_POST['password'];
+
+require 'database.php';
+
+$sql = "SELECT * FROM users WHERE email = '$email.' ";
 
 $result = mysqli_query($conn, $sql);
-
 $user = mysqli_fetch_assoc($result);
 
-if(is_array($user)){
-    echo $user['firstname'] . " is ingelogd";
-
+if(!is_array($user)){
+    echo 'No user is found';
+    exit;
 }
+
+if($password != $user['password']){
+    echo "ohoh wachtwoord is niet correct!";
+    exit;
+}
+
+header("location: dashboard.php");
+exit;
+
