@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lastname = $_POST['lastname'];
     $address = $_POST['address'];
     $city = $_POST['city'];
-    $role = $_POST['role']; 
+    $role = $_POST['role'] ?? 'administrator'; 
 
     require 'database.php';
     $sql = "INSERT INTO users (email, password, firstname, lastname, address, city, is_active, role)
