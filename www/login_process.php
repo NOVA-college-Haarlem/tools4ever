@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 require 'database.php';
 
 if(!isset($_POST['email'])){
@@ -45,6 +42,14 @@ if($password != $user['password']){
     echo "ohoh wachtwoord is niet correct!";
     exit;
 }
+
+session_start();
+$_SESSION['email'] = $user['email'];
+$_SESSION['firstname'] = $user['firstname'];
+$_SESSION['lastname'] = $user['lastname'];
+$_SESSION['role'] = $user['role'];
+
+
 
 header("location: dashboard.php");
 exit;
