@@ -1,6 +1,8 @@
 <?php
 
 
+
+
 require 'database.php';
 
 if(!isset($_POST['email'])){
@@ -21,17 +23,18 @@ if(empty($_POST['password'])){
     echo "password is leeg";
     exit;
 }
-
+    
 
 $email = $_POST['email'];
 $password = $_POST['password'];
 
 require 'database.php';
 
-$sql = "SELECT * FROM users WHERE email = '$email.' ";
+$sql = "SELECT * FROM users WHERE email = '$email' ";
 
 $result = mysqli_query($conn, $sql);
 $user = mysqli_fetch_assoc($result);
+
 
 if(!is_array($user)){
     echo 'No user is found';
