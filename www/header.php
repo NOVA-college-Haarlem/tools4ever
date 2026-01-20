@@ -11,35 +11,3 @@
 </head>
 
 <body>
-    <header>
-        <a href="index.php">
-            <img src="images/Obuh.png" alt="Obuh">
-        </a>
-        <nav>
-            <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="brands_index.php">Merken</a></li>
-                <li><a href="">Winkelmand</a></li>
-                <?php if (isset($_SESSION['user_id'])) : ?>
-                    <li><a href="dashboard.php">Dashboard</a></li>
-                    <li class="dropdown">
-                        <a href="">Gebruikers</a>
-                        <div class="dropdown-content">
-                            <a href="users_index.php">Bekijken</a>
-                            <a href="users_create.php">Toevoegen</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="">Gereedschap</a>
-                        <div class="dropdown-content">
-                            <a href="tools_index.php">Bekijken</a>
-                            <a href="tools_create.php">Toevoegen</a>
-                        </div>
-                    </li>
-                    <li><a href="logout.php" class="btn btn-danger">Uitloggen</a></li>
-                <?php else : ?>
-                    <li><a href="login.php" class="btn btn-success">Inloggen</a></li>
-                <?php endif; ?>
-            </ul>
-        </nav>
-    </header>
