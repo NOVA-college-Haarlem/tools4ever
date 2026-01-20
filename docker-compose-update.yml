@@ -10,7 +10,7 @@ services:
     depends_on:
       - mariadb
   mariadb:
-    image: mariadb:noble
+    image: mariadb:10.4
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: ${MYSQL_DATABASE}
