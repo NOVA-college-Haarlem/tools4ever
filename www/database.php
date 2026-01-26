@@ -2,7 +2,7 @@
 
 //database connection   
 $dbhost = "mariadb";
-$dbuser = "root";
+$dbuser = "user";
 $dbpass = "password";
 $dbname = "tools4ever";
 
