@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {
 
             $conn = mysqli_connect('mariadb', 'root', 'password', 'tools4ever');
 
-            $sql = "SELECT * FROM users WHERE email='$emailForm'";
+            $sql = "SELECT * FROM users WHERE email='$emailForm' AND password='$passwordForm'";
             $result = mysqli_query($conn, $sql);
 
             //als de email bestaat dan is het resultaat groter dan 0
@@ -17,25 +17,16 @@ if (isset($_POST['submit'])) {
                 //resultaat gevonden? Dan maken we een user-array $dbuser
                 $dbuser = mysqli_fetch_assoc($result);
 
-                if ($dbuser['password'] == $passwordForm) {
+                session_start();
+                $_SESSION['user_id'] = $dbuser['id'];
+                $_SESSION['email'] = $dbuser['email'];
+                $_SESSION['firstname'] = $dbuser['firstname'];
+                $_SESSION['lastname'] = $dbuser['lastname'];
+                $_SESSION['role'] = $dbuser['role'];
 
-                    session_start();
-                    $_SESSION['user_id']    = $dbuser['id'];
-                    $_SESSION['email']      = $dbuser['email'];
-                    $_SESSION['firstname']  = $dbuser['firstname'];
-                    $_SESSION['lastname']   = $dbuser['lastname'];
-                    $_SESSION['role']       = $dbuser['role'];
-
-                    // echo "You are logged in";
-                    header("Location: dashboard.php");
-                    exit;
-                } else {
-                    include 'header.php';
-                    $_GET['message'] = 'wrongpassword';
-                    include 'login-message.php';
-                    include 'footer.php';
-                    exit;
-                }
+                // echo "You are logged in";
+                header("Location: dashboard.php");
+                exit;
             } else {
                 include 'header.php';
                 $_GET['message'] = 'usernotfound';
